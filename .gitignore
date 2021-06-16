@@ -1,0 +1,6 @@
+# prevent commiting IDE files
+/.idea
+# vendor files
+/vendor
+# composer lock
+composer.lock

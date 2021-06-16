@@ -1,0 +1,25 @@
+{
+  "name": "hurtcode/configure",
+  "description": "Library for creating configurations",
+  "type": "library",
+  "keywords": [
+    "flashes",
+    "helper"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kaliyev Kirill",
+      "email": "kiryakz2000@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "8.*",
+    "psr/cache": "^2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hurtcode\\Config\\": "src/"
+    }
+  }
+}
