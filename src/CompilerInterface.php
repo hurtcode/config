@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hurtcode\Config;;
+namespace Hurtcode\Config;
 
 /**
  * Compiler interface

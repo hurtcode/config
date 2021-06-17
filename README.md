@@ -44,7 +44,3 @@ of keys and value. This order of things allows you to use any format as configur
 - CompilerInterface parses it using specific rules
 - Configurator rules them all and caches result.
 
-**Note**
-
-Also, this package provides special Environment class, that may be helpful to create rules depend on
-environment. `Environment::class` provides ability to set global environment variable and get access to it

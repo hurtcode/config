@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hurtcode\Config;;
+namespace Hurtcode\Config;
 
 /**
  * Exception class for configure module

@@ -22,6 +22,7 @@ final class Configurator
     /**
      * Helps to locate configurator
      * part from other point of program
+     *
      * @var Configurator|null
      */
     public static ?Configurator $locator;
@@ -78,7 +79,7 @@ final class Configurator
     public function run(bool $forcedRebuild = false): array
     {
         $out = $this->getFromCache($forcedRebuild);
-        if (!isset($out))
+        if (isset($out))
             return $out;
 
         $out = $this->compiler->compile($this->configs->main());
