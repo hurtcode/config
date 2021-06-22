@@ -18,7 +18,7 @@ final class Configurator
 
     private ConfigInterface $configs;
     private CompilerInterface $compiler;
-    private CacheItemPoolInterface $cacheItemPool;
+    private ?CacheItemPoolInterface $cacheItemPool;
     /**
      * Helps to locate configurator
      * part from other point of program
@@ -32,12 +32,12 @@ final class Configurator
      *
      * @param ConfigInterface $configs
      * @param CompilerInterface $compiler
-     * @param CacheItemPoolInterface $cacheItemPool
+     * @param CacheItemPoolInterface|null $cacheItemPool
      */
     public function __construct(
         ConfigInterface $configs,
         CompilerInterface $compiler,
-        CacheItemPoolInterface $cacheItemPool,
+        ?CacheItemPoolInterface $cacheItemPool = null,
     )
     {
         $this->configs = $configs;
@@ -102,10 +102,13 @@ final class Configurator
     private function getFromCache(bool $forcedRebuild = false): ?array
     {
         try {
+            if (!isset($this->cacheItemPool))
+                return null;
+
             $cacheItem = $this->cacheItemPool->getItem(self::CACHE);
-            if ($cacheItem->isHit() && !$forcedRebuild) {
+            if ($cacheItem->isHit() && !$forcedRebuild)
                 return $cacheItem->get();
-            }
+
         } catch (InvalidArgumentException $e) {
             throw new ConfigureException($e->getMessage(), $e->getCode(), $e);
         }
@@ -122,6 +125,8 @@ final class Configurator
     private function saveInCache(array $configuration): void
     {
         try {
+            if (!isset($this->cacheItemPool))
+                return;
             $cacheItem = $this->cacheItemPool->getItem(self::CACHE);
             $cacheItem->set($configuration);
             $this->cacheItemPool->save($cacheItem);
